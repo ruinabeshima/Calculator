@@ -14,10 +14,13 @@ function Multiply(value1, value2){
 }
 
 function Divide(value1, value2){
-  let result = value1 / value2
+  if (value2 === 0){
+    result = "dumdum"
+  } else {
+    result = value1 / value2
+  }
   return result 
 }
-
 // Calculation
 function operate(value1, value2, operation){
   if (operation === "+"){
@@ -47,16 +50,16 @@ function display(string){
 }
 
 function separateValues(calcString){
-  if (operation = "+"){
+  if (operation === "+"){
     value1 = calcString.split("+")[0]
     value2 = calcString.split("+")[1]
-  } else if (operation = "-"){
+  } else if (operation === "-"){
     value1 = calcString.split("-")[0]
     value2 = calcString.split("-")[1]
-  } else if (operation = "*"){
-    value1 = calcString.split("*")[0]
-    value2 = calcString.split("*")[1]
-  } else if (operation = "/"){
+  } else if (operation === "*"){
+    value1 = calcString.split("X")[0]
+    value2 = calcString.split("X")[1]
+  } else if (operation === "/"){
     value1 = calcString.split("/")[0]
     value2 = calcString.split("/")[1]
   }
@@ -110,10 +113,9 @@ function getValues(){
       calcString += "+"
       display(calcString)
     } else if (operationCounter === 1){
-      operationCounter = 0 
       separateValues(calcString)  
       result = operate(Number(value1), Number(value2), operation)
-      calcString = result.toString()
+      calcString = result.toString() + "+"
       display(calcString)
     }
   })
@@ -122,12 +124,11 @@ function getValues(){
       operation = "-"
       operationCounter += 1
       calcString += "-"
-      display("-")
+      display(calcString)
     } else if (operationCounter === 1){
-      operationCounter = 0 
       separateValues(calcString)  
       result = operate(Number(value1), Number(value2), operation)
-      calcString = result.toString()
+      calcString = result.toString() + "-"
       display(calcString)
     }
   })
@@ -135,14 +136,13 @@ function getValues(){
     if (operationCounter === 0){
       operation = "*"
       operationCounter += 1
-      calcString += "*"
-      display("X")
+      calcString += "X"
+      display(calcString)
     } else if (operationCounter === 1){
-      operationCounter = 0 
       separateValues(calcString)  
       result = operate(Number(value1), Number(value2), operation)
-      calcString = result.toString()
-      display(calcString)
+      calcString = result.toString() + "*"
+      display(result.toString() + "X")
     }
   })
   divide.addEventListener("click", function(){
@@ -150,18 +150,25 @@ function getValues(){
       operation = "/"
       operationCounter += 1
       calcString += "/"
-      display("/")
+      display(calcString)
     } else if (operationCounter === 1){
-      operationCounter = 0 
       separateValues(calcString)  
       result = operate(Number(value1), Number(value2), operation)
-      calcString = result.toString()
+      calcString = result.toString() + "/"
       display(calcString)
     }
   })
   equals.addEventListener("click", function(){
+    operationCounter = 0 
+    separateValues(calcString)  
+    result = operate(Number(value1), Number(value2), operation)
+    calcString = result.toString()
+    display(calcString)
   })
   clear.addEventListener("click", function(){
+    operationCounter = 0 
+    calcString = ""
+    display(calcString)
   })
 }
 
