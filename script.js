@@ -1,41 +1,168 @@
-function add(value1, value2){
+function Add(value1, value2){
   let result = value1 + value2
   return result
 }
 
-function subtract(value1, value2){
+function Subtract(value1, value2){
   let result = value1 - value2
   return result 
 }
 
-function multiply(value1, value2){
+function Multiply(value1, value2){
   let result = value1 * value2
   return result 
 }
 
-function divide(value1, value2){
+function Divide(value1, value2){
   let result = value1 / value2
   return result 
 }
 
+// Calculation
 function operate(value1, value2, operation){
   if (operation === "+"){
-    result = add(value1, value2)
+    result = Add(value1, value2)
   } else if (operation === "-"){
-    result = subtract(value1, value2)
+    result = Subtract(value1, value2)
   } else if (operation === "*"){
-    result = multiply(value1, value2)
+    result = Multiply(value1, value2)
   } else if (operation === "/"){
-    result = divide(value1, value2)
+    result = Divide(value1, value2)
   }
   return result
 } 
 
+// Displaying numbers on screen
 function display(string){
+  const calcDisplayDelete = document.getElementById("calc-display-text")
+  if (calcDisplayDelete){
+    calcDisplayDelete.remove()
+  }
+
   let screenText = document.createElement("p")
   let screenNode = document.createTextNode(string)
   screenText.appendChild(screenNode)
+  screenText.id = "calc-display-text"
   screenContainer.appendChild(screenText)
+}
+
+function separateValues(calcString){
+  if (operation = "+"){
+    value1 = calcString.split("+")[0]
+    value2 = calcString.split("+")[1]
+  } else if (operation = "-"){
+    value1 = calcString.split("-")[0]
+    value2 = calcString.split("-")[1]
+  } else if (operation = "*"){
+    value1 = calcString.split("*")[0]
+    value2 = calcString.split("*")[1]
+  } else if (operation = "/"){
+    value1 = calcString.split("/")[0]
+    value2 = calcString.split("/")[1]
+  }
+}
+
+function getValues(){
+  number0.addEventListener("click", function(){
+    calcString += "0"
+    display(calcString)
+  })
+  number1.addEventListener("click", function(){
+    calcString += "1"
+    display(calcString)
+  })
+  number2.addEventListener("click", function(){
+    calcString += "2"
+    display(calcString)
+  })
+  number3.addEventListener("click", function(){
+    calcString += "3"
+    display(calcString)
+  })
+  number4.addEventListener("click", function(){
+    calcString += "4"
+    display(calcString)
+  })
+  number5.addEventListener("click", function(){
+    calcString += "5"
+    display(calcString)
+  })
+  number6.addEventListener("click", function(){
+    calcString += "6"
+    display(calcString)
+  })
+  number7.addEventListener("click", function(){
+    calcString += "7"
+    display(calcString)
+  })
+  number8.addEventListener("click", function(){
+    calcString += "8"
+    display(calcString)
+  })
+  number9.addEventListener("click", function(){
+    calcString += "9"
+    display(calcString)
+  })
+  add.addEventListener("click", function(){
+    if (operationCounter === 0){
+      operation = "+"
+      operationCounter += 1
+      calcString += "+"
+      display(calcString)
+    } else if (operationCounter === 1){
+      operationCounter = 0 
+      separateValues(calcString)  
+      result = operate(Number(value1), Number(value2), operation)
+      calcString = result.toString()
+      display(calcString)
+    }
+  })
+  subtract.addEventListener("click", function(){
+    if (operationCounter === 0){
+      operation = "-"
+      operationCounter += 1
+      calcString += "-"
+      display("-")
+    } else if (operationCounter === 1){
+      operationCounter = 0 
+      separateValues(calcString)  
+      result = operate(Number(value1), Number(value2), operation)
+      calcString = result.toString()
+      display(calcString)
+    }
+  })
+  multiply.addEventListener("click", function(){
+    if (operationCounter === 0){
+      operation = "*"
+      operationCounter += 1
+      calcString += "*"
+      display("X")
+    } else if (operationCounter === 1){
+      operationCounter = 0 
+      separateValues(calcString)  
+      result = operate(Number(value1), Number(value2), operation)
+      calcString = result.toString()
+      display(calcString)
+    }
+  })
+  divide.addEventListener("click", function(){
+    if (operationCounter === 0){
+      operation = "/"
+      operationCounter += 1
+      calcString += "/"
+      display("/")
+    } else if (operationCounter === 1){
+      operationCounter = 0 
+      separateValues(calcString)  
+      result = operate(Number(value1), Number(value2), operation)
+      calcString = result.toString()
+      display(calcString)
+    }
+  })
+  equals.addEventListener("click", function(){
+  })
+  clear.addEventListener("click", function(){
+  })
 }
 
 //Initialising variables 
@@ -57,3 +184,13 @@ equals = document.getElementById("equals")
 clear = document.getElementById("clear")
 screenContainer = document.getElementById("screen-container")
 
+let calcString = ""
+let operationCounter = 0 
+let operation = ""
+let value1 = 0 
+let value2 = 0 
+getValues()
+
+
+text = "hello,world"
+console.log(text.split(",")[1])
